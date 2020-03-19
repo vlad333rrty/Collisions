@@ -1,8 +1,10 @@
+import java.util.Objects;
+
 public class Vector2d {
     double x,y;
-    Vector2d(){};
+    Vector2d(){}
 
-    Vector2d(double x,double y){
+    Vector2d(double x, double y){
         set(x,y);
     }
 
@@ -91,4 +93,32 @@ public class Vector2d {
     double vectorProjection(Vector2d vec){
         return dotProduct(vec.normalize());
     }
+
+    public String toString() {
+        return "Vector2d{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    /**
+     * Is used to identify collinear vectors
+     * @param o Vector2d
+     * @return boolean
+     */
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vector2d)) return false;
+        Vector2d vector2d = (Vector2d) o;
+        if (vector2d.x==0) return x==0;
+        if (x==0) return vector2d.x==0;
+        if (vector2d.y==0) return y==0;
+        if (y==0) return vector2d.y==0;
+        return vector2d.x*y==vector2d.y*x;
+    }
+
+    public int hashCode() {
+        return Objects.hash();
+    }
 }
+
